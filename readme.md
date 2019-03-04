@@ -1,4 +1,4 @@
-## WxJava（原weixin-java-tools）微信Java开发工具包（SDK）
+## WxJava - 微信开发 Java SDK（开发工具包）
 
 [![码云Gitee](https://gitee.com/binary/weixin-java-tools/badge/star.svg?theme=blue)](https://gitee.com/binary/weixin-java-tools)
 [![Github](http://github-svg-buttons.herokuapp.com/star.svg?user=Wechat-Group&repo=WxJava&style=flat&background=1081C1)](https://github.com/Wechat-Group/WxJava)
@@ -11,6 +11,8 @@
 ---------------------------------
 #### 支持包括微信支付、开放平台、公众号（包括订阅号和服务号）、企业微信/企业号、小程序等微信功能的后端开发。
 ---------------------------------
+
+[![coding](https://gitee.com/binary/weixin-java-tools/raw/master/banners/readme.jpg)](https://e.coding.net/?utm_source=WxJava)
 
 ### 重要信息
 1. **2018-12-23 项目更名为WxJava，并发布 [【3.3.0正式版】](https://github.com/Wechat-Group/WxJava/releases)**！
@@ -50,7 +52,7 @@
 <dependency>
   <groupId>com.github.binarywang</groupId>
   <artifactId>（不同模块参考下文）</artifactId>
-  <version>3.2.0</version>
+  <version>3.3.0</version>
 </dependency>
 ```
 * 各模块的`artifactId`：
@@ -72,24 +74,33 @@
 1. 开源项目：https://github.com/workcheng/weiya
 1. 开源项目：https://github.com/jmdhappy/xxpay-master 
 1. 微信点餐系统开源项目：http://www.sqmax.top/springboot-project/
+1. 小程序：（京东）友家铺子，友家铺子店长版，京粉精选
 1. 小程序：[喵星人贴吧助手(扫码关注)](http://p98ahz3tg.bkt.clouddn.com/miniappqrcode.jpg)
 1. 小程序：树懒揽书+
 1. 小程序：广廉快线，鹏城巴士等
+1. 小程序：当燃挑战、sportlight轻灵运动
 1. 小程序：360考试宝典
-1. 平台：[小猪餐餐](http://www.xzcancan.com/)
-1. 平台：[餐饮系统](http://canyin.daydao.com)
 1. 公众号：中国电信上海网厅（sh_189）
 1. 公众号：E答平台
+1. 公众号：宁夏生鲜365
+1. 公众号：通服货滴
+1. 公众号：神龙养车
+1. 公众号：沃音乐商务智能
 1. 公众号：[全民约跑健身便利店](http://www.oneminsport.com/)
 1. 公众号：[洽洽食品](https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQFM8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAycDRPOXBZbVZib2UxMDAwME0wN2gAAgRIu4RbAwQAAAAA)、[洽洽合伙人](https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQFP8jwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyOUpJaU5VcXBlWTAxMDAwME0wN1oAAgSau4RbAwQAAAAA)
 1. 公众号和小程序：民医台（可自行搜索）
-1. 洽洽企业号
 1. 高善人力资源
+1. 平台：[小猪餐餐](http://www.xzcancan.com/)
+1. 平台：[餐饮系统](http://canyin.daydao.com)
+1. 锐捷网络：Saleslink
+1. 洽洽企业号
+1. HTC企业微信
 1. 其他更多案例请[【访问这里】](https://github.com/Wechat-Group/weixin-java-tools/issues/729)，持续更新中。
 
 ----------------------------------
 ### 贡献者列表
-特别感谢以下参与贡献的所有同学！
+特别感谢参与贡献的所有同学！所有贡献者列表请在[此处](https://github.com/Wechat-Group/WxJava/graphs/contributors)查看。
+以下仅列出贡献次数最多的几位，欢迎大家踊跃贡献代码！
 1. [chanjarster (Daniel Qian)](http://github.com/chanjarster)
 1. [binarywang (Binary Wang)](http://github.com/binarywang)
 1. [mgcnrx11](http://github.com/mgcnrx11)
@@ -100,57 +111,3 @@
 1. [tianmu](http://github.com/tianmu)
 1. [rememberber (周波)](http://github.com/rememberber)
 1. [charmingoh (Charming)](http://github.com/charmingoh)
-1. [gaigeshen (gaigeshen)](http://github.com/gaigeshen)
-1. [ukid](http://github.com/ukid)
-1. [forfuns (爱因斯唐)](http://github.com/forfuns)
-1. [yuanqixun (yuanqixun)](http://github.com/yuanqixun)
-1. [zxkane (Meng Xin Zhu)](http://github.com/zxkane)
-1. [crskyp (我是木予)](http://github.com/crskyp)
-1. [dylanleung (dylanleung)](http://github.com/dylanleung)
-1. [huansinho](http://github.com/huansinho)
-1. [codepiano (codepiano)](http://github.com/codepiano)
-1. [stvliu (Steven Liu)](http://github.com/stvliu)
-1. [unlimitedsola (Sola)](http://github.com/unlimitedsola)
-1. [fxdfxq (fxdfxq)](http://github.com/fxdfxq)
-1. [withinthefog (withinthefog)](http://github.com/withinthefog)
-1. [DDLeEHi](http://github.com/DDLeEHi)
-1. [nickwongwong (Nick Wong)](http://github.com/nickwongwong)
-1. [jink2005 (Jink2005)](http://github.com/jink2005)
-1. [ajffdnt](http://github.com/ajffdnt)
-1. [iwareserictsai (Eric.Tsai)](http://github.com/iwareserictsai)
-1. [SimonDolph (Simon Dolph)](http://github.com/SimonDolph)
-1. [ZhaoxiongTan (xiong)](http://github.com/ZhaoxiongTan)
-1. [howardliu-cn (看山)](http://github.com/howardliu-cn)
-1. [SunshineTech (SunshineTech Zhang)](http://github.com/SunshineTech)
-1. [xusheng1987 (flying)](http://github.com/xusheng1987)
-1. [lwxian](http://github.com/lwxian)
-1. [aliangsoft (阿亮软件)](http://github.com/aliangsoft)
-1. [zhfish (zhfish)](http://github.com/zhfish)
-1. [dwandw (dwandw)](http://github.com/dwandw)
-1. [alanchenup (alanchen)](http://github.com/alanchenup)
-1. [zexpp5 (Lance7in)](http://github.com/zexpp5)
-1. [xiaohulu (huluwa)](http://github.com/xiaohulu)
-1. [aalx (devina)](http://github.com/aalx)
-1. [rtsbtx (强哥)](http://github.com/rtsbtx)
-1. [dracupid (Jingchen Zhao)](http://github.com/dracupid)
-1. [lijunkun1988](http://github.com/lijunkun1988)
-1. [lly835](http://github.com/lly835)
-1. [mog0202 (蘑菇0202)](http://github.com/mog0202)
-1. [bobbyguo (bobby_guo)](http://github.com/bobbyguo)
-1. [huotaihe (白马度和)](http://github.com/huotaihe)
-1. [axeon](http://github.com/axeon)
-1. [dxwts (xuewu)](http://github.com/dxwts)
-1. [Mkluas (Mklaus)](http://github.com/Mkluas)
-1. [CodeIdeal (康阳)](http://github.com/CodeIdeal)
-1. [leeis (IOMan)](http://github.com/leeis)
-1. [lichenliang666 (李晨亮)](http://github.com/lichenliang666)
-1. [627535195](http://github.com/627535195)
-1. [ztmark (Mark)](http://github.com/ztmark)
-1. [gtyang](http://github.com/gtyang)
-1. [scott-z (scott)](http://github.com/scott-z)
-1. [borisbao (Boris)](http://github.com/borisbao)
-1. [qsjia (QSJia)](http://github.com/qsjia)
-1. [webcreazy (webcreazy)](http://github.com/webcreazy)
-1. [TonyLuo (Tony)](http://github.com/TonyLuo)
-1. [cwivan (鱼丸Cwivan)](http://github.com/cwivan)
-1. [biggates (Xiaoyu Guo)](http://github.com/biggates)
