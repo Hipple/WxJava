@@ -1,12 +1,5 @@
 package me.chanjar.weixin.mp.api.impl;
 
-import java.io.IOException;
-import java.util.concurrent.locks.Lock;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -19,37 +12,22 @@ import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.DataUtils;
 import me.chanjar.weixin.common.util.RandomUtils;
 import me.chanjar.weixin.common.util.crypto.SHA1;
-import me.chanjar.weixin.common.util.http.RequestExecutor;
-import me.chanjar.weixin.common.util.http.RequestHttp;
-import me.chanjar.weixin.common.util.http.SimpleGetRequestExecutor;
-import me.chanjar.weixin.common.util.http.SimplePostRequestExecutor;
-import me.chanjar.weixin.common.util.http.URIUtil;
-import me.chanjar.weixin.mp.api.WxMpAiOpenService;
-import me.chanjar.weixin.mp.api.WxMpCardService;
-import me.chanjar.weixin.mp.api.WxMpConfigStorage;
-import me.chanjar.weixin.mp.api.WxMpDataCubeService;
-import me.chanjar.weixin.mp.api.WxMpDeviceService;
-import me.chanjar.weixin.mp.api.WxMpKefuService;
-import me.chanjar.weixin.mp.api.WxMpMassMessageService;
-import me.chanjar.weixin.mp.api.WxMpMaterialService;
-import me.chanjar.weixin.mp.api.WxMpMemberCardService;
-import me.chanjar.weixin.mp.api.WxMpMenuService;
-import me.chanjar.weixin.mp.api.WxMpQrcodeService;
-import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.api.WxMpShakeService;
-import me.chanjar.weixin.mp.api.WxMpStoreService;
-import me.chanjar.weixin.mp.api.WxMpSubscribeMsgService;
-import me.chanjar.weixin.mp.api.WxMpTemplateMsgService;
-import me.chanjar.weixin.mp.api.WxMpUserBlacklistService;
-import me.chanjar.weixin.mp.api.WxMpUserService;
-import me.chanjar.weixin.mp.api.WxMpUserTagService;
-import me.chanjar.weixin.mp.api.WxMpWifiService;
+import me.chanjar.weixin.common.util.http.*;
+import me.chanjar.weixin.mp.api.*;
 import me.chanjar.weixin.mp.bean.WxMpSemanticQuery;
 import me.chanjar.weixin.mp.bean.result.WxMpCurrentAutoReplyInfo;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpSemanticQueryResult;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import me.chanjar.weixin.mp.enums.TicketType;
+import me.chanjar.weixin.mp.util.WxMpConfigStorageHolder;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.locks.Lock;
 
 /**
  * 基础实现类.
@@ -81,6 +59,10 @@ public abstract class BaseWxMpServiceImpl<H, P> implements WxMpService, RequestH
   private WxMpMassMessageService massMessageService = new WxMpMassMessageServiceImpl(this);
   private WxMpAiOpenService aiOpenService = new WxMpAiOpenServiceImpl(this);
   private WxMpWifiService wifiService = new WxMpWifiServiceImpl(this);
+  private WxMpMarketingService marketingService = new WxMpMarketingServiceImpl(this);
+
+  private Map<String, WxMpConfigStorage> wxMpConfigStoragePool;
+  private boolean isMultiWxApp = false;
 
   private int retrySleepMillis = 1000;
   private int maxRetryTimes = 5;
@@ -352,6 +334,10 @@ public abstract class BaseWxMpServiceImpl<H, P> implements WxMpService, RequestH
 
   @Override
   public WxMpConfigStorage getWxMpConfigStorage() {
+    if (isMultiWxApp) {
+      return wxMpConfigStoragePool.get(WxMpConfigStorageHolder.get());
+    }
+
     return this.wxMpConfigStorage;
   }
 
@@ -359,6 +345,22 @@ public abstract class BaseWxMpServiceImpl<H, P> implements WxMpService, RequestH
   public void setWxMpConfigStorage(WxMpConfigStorage wxConfigProvider) {
     this.wxMpConfigStorage = wxConfigProvider;
     this.initHttp();
+  }
+
+  @Override
+  public void setMultiWxMpConfigStorage(Map<String, WxMpConfigStorage> configStorages) {
+    wxMpConfigStoragePool = configStorages;
+    isMultiWxApp = true;
+    this.initHttp();
+  }
+
+  @Override
+  public boolean switchover(String label) {
+    if (wxMpConfigStoragePool.containsKey(label)) {
+      WxMpConfigStorageHolder.set(label);
+      return true;
+    }
+    return false;
   }
 
   @Override
@@ -544,5 +546,15 @@ public abstract class BaseWxMpServiceImpl<H, P> implements WxMpService, RequestH
   @Override
   public WxMpWifiService getWifiService() {
     return this.wifiService;
+  }
+
+  @Override
+  public WxMpMarketingService getMarketingService() {
+    return this.marketingService;
+  }
+
+  @Override
+  public void setMarketingService(WxMpMarketingService marketingService) {
+    this.marketingService = marketingService;
   }
 }

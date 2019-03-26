@@ -12,6 +12,9 @@ import me.chanjar.weixin.mp.bean.result.WxMpSemanticQueryResult;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import me.chanjar.weixin.mp.enums.TicketType;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 微信公众号API的Service.
  *
@@ -307,6 +310,19 @@ public interface WxMpService {
   void setWxMpConfigStorage(WxMpConfigStorage wxConfigProvider);
 
   /**
+   * 注入多个 {@link WxMpConfigStorage} 的实现. 并为每个 {@link WxMpConfigStorage} 赋予不同的 {@link String label} 值
+   * @return
+   */
+  void setMultiWxMpConfigStorage(Map<String, WxMpConfigStorage> configStorages);
+
+  /**
+   * 进行相应的 WxApp 切换
+   * @param label
+   * @return
+   */
+  boolean switchover(String label);
+
+  /**
    * 返回客服接口方法实现类，以方便调用其各个接口.
    *
    * @return WxMpKefuService
@@ -412,6 +428,13 @@ public interface WxMpService {
   WxMpMemberCardService getMemberCardService();
 
   /**
+   * 返回营销相关接口方法的实现类对象，以方便调用其各个接口.
+   *
+   * @return WxMpMarketingService
+   */
+  WxMpMarketingService getMarketingService();
+
+  /**
    * 初始化http请求对象.
    */
   void initHttp();
@@ -473,4 +496,6 @@ public interface WxMpService {
   void setMassMessageService(WxMpMassMessageService massMessageService);
 
   void setAiOpenService(WxMpAiOpenService aiOpenService);
+
+  void setMarketingService(WxMpMarketingService marketingService);
 }
