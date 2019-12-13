@@ -5,8 +5,6 @@ import me.chanjar.weixin.mp.bean.kefu.WxMpKefuMessage.WxArticle;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @Test
 public class WxMpKefuMessageTest {
 
@@ -158,13 +156,14 @@ public class WxMpKefuMessageTest {
   public void testMsgMenuBuild() {
     WxMpKefuMessage reply = WxMpKefuMessage.MSGMENU()
       .toUser("OPENID")
-      .msgMenuList("101,满意", "102,不满意")
-      .headContent("您对本次服务是否满意呢?")
-      .tailContent("欢迎再次光临")
+      .addMenus(new WxMpKefuMessage.MsgMenu("101", "msgmenu1"),
+        new WxMpKefuMessage.MsgMenu("102", "msgmenu2"))
+      .headContent("head_content")
+      .tailContent("tail_content")
       .build();
 
-    assertThat(reply.toJson())
-      .isEqualTo("{\"touser\":\"OPENID\",\"msgtype\":\"msgmenu\",\"msgmenu\":{\"head_content\":\"您对本次服务是否满意呢?\",\"list\":[{\"id\":\"101\",\"content\":\"满意\"},{\"id\":\"102\",\"content\":\"不满意\"}],\"tail_content\":\"欢迎再次光临\"}}");
+    Assert.assertEquals(reply.toJson(),
+      "{\"touser\":\"OPENID\",\"msgtype\":\"msgmenu\",\"msgmenu\":{\"head_content\":\"head_content\",\"list\":[{\"id\":\"101\",\"content\":\"msgmenu1\"},{\"id\":\"102\",\"content\":\"msgmenu2\"}],\"tail_content\":\"tail_content\"}}");
   }
 
 }

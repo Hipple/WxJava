@@ -7,7 +7,7 @@ import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.http.HttpType;
 import me.chanjar.weixin.common.util.http.apache.ApacheHttpClientBuilder;
 import me.chanjar.weixin.common.util.http.apache.DefaultApacheHttpClientBuilder;
-import me.chanjar.weixin.mp.api.WxMpConfigStorage;
+import me.chanjar.weixin.mp.config.WxMpConfigStorage;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -74,6 +74,9 @@ public class WxMpServiceHttpClientImpl extends BaseWxMpServiceImpl<CloseableHttp
     Lock lock = config.getAccessTokenLock();
     lock.lock();
     try {
+      if (!config.isAccessTokenExpired() && !forceRefresh) {
+        return config.getAccessToken();
+      }
       String url = String.format(GET_ACCESS_TOKEN_URL.getUrl(config), config.getAppId(), config.getSecret());
       try {
         HttpGet httpGet = new HttpGet(url);

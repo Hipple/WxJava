@@ -1,6 +1,8 @@
 package me.chanjar.weixin.mp.bean.kefu;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.mp.builder.kefu.*;
 import me.chanjar.weixin.mp.util.json.WxMpGsonBuilder;
@@ -32,15 +34,14 @@ public class WxMpKefuMessage implements Serializable {
   private String mpNewsMediaId;
   private String miniProgramAppId;
   private String miniProgramPagePath;
-  private List<WxArticle> articles = new ArrayList<>();
-
   private String headContent;
   private String tailContent;
+  private List<WxArticle> articles = new ArrayList<>();
+
   /**
    * 菜单消息里的菜单内容.
-   * 请使用逗号分割的形式将id和content连起来放在数组的里面
    */
-  private String[] msgMenuList;
+  private List<MsgMenu> msgMenus = new ArrayList<>();
 
   /**
    * 获得文本消息builder.
@@ -137,6 +138,8 @@ public class WxMpKefuMessage implements Serializable {
   }
 
   @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
   public static class WxArticle implements Serializable {
     private static final long serialVersionUID = 5145137235440507379L;
 
@@ -144,5 +147,15 @@ public class WxMpKefuMessage implements Serializable {
     private String description;
     private String url;
     private String picUrl;
+  }
+
+  @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
+  public static class MsgMenu implements Serializable {
+    private static final long serialVersionUID = 7020769047598378839L;
+
+    private String id;
+    private String content;
   }
 }

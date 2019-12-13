@@ -20,7 +20,8 @@ public final class WxCpApiPathConsts {
   public static final String BATCH_REPLACE_USER = "/cgi-bin/batch/replaceuser";
   public static final String BATCH_GET_RESULT = "/cgi-bin/batch/getresult?jobid=";
   public static final String JSCODE_TO_SESSION = "/cgi-bin/miniprogram/jscode2session";
-  public static final String GET_TOKEN = "/cgi-bin/gettoken?&corpid=%s&corpsecret=%s";
+  public static final String GET_TOKEN = "/cgi-bin/gettoken?corpid=%s&corpsecret=%s";
+  public static final String GET_PROVIDER_TOKEN = "/cgi-bin/service/get_provider_token";
 
   public static class Agent {
     public static final String AGENT_GET = "/cgi-bin/agent/get?agentid=%d";
@@ -101,6 +102,7 @@ public final class WxCpApiPathConsts {
     public static final String BATCH_INVITE = "/cgi-bin/batch/invite";
     public static final String USER_CONVERT_TO_OPENID = "/cgi-bin/user/convert_to_openid";
     public static final String USER_CONVERT_TO_USERID = "/cgi-bin/user/convert_to_userid";
+    public static final String GET_USER_ID = "/cgi-bin/user/getuserid";
     public static final String GET_EXTERNAL_CONTACT = "/cgi-bin/crm/get_external_contact?external_userid=";
   }
 
