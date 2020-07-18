@@ -1,9 +1,6 @@
 package com.github.binarywang.wxpay.service.impl;
 
 import com.github.binarywang.wxpay.bean.profitsharing.*;
-import com.github.binarywang.wxpay.bean.profitsharing.ProfitSharingRequest;
-import com.github.binarywang.wxpay.bean.profitsharing.Receiver;
-import com.github.binarywang.wxpay.bean.profitsharing.ReceiverList;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
@@ -23,7 +20,7 @@ public class ProfitSharingServiceImplTest {
   private WxPayService payService;
 
   @Test
-  public void testProfitsharing() throws WxPayException {
+  public void testProfitSharing() throws WxPayException {
     ReceiverList instance = ReceiverList.getInstance();
     instance.add(new Receiver(WxPayConstants.ReceiverType.PERSONAL_OPENID,
       "oyOUE5ql4TtzrBg5cVOwxq6tbjOs",
@@ -40,7 +37,7 @@ public class ProfitSharingServiceImplTest {
   }
 
   @Test
-  public void testMultiprofitsharing() throws WxPayException {
+  public void testMultiProfitSharing() throws WxPayException {
     ReceiverList instance = ReceiverList.getInstance();
     instance.add(new Receiver(WxPayConstants.ReceiverType.MERCHANT_ID,
       "86693852",
@@ -56,7 +53,7 @@ public class ProfitSharingServiceImplTest {
   }
 
   @Test
-  public void testProfitsharingFinish() throws WxPayException {
+  public void testProfitSharingFinish() throws WxPayException {
     ProfitSharingFinishRequest request = ProfitSharingFinishRequest
       .newBuilder()
       .outOrderNo("20191023103251431856285")
@@ -67,7 +64,7 @@ public class ProfitSharingServiceImplTest {
   }
 
   @Test
-  public void testAddreceiver() throws WxPayException {
+  public void testAddReceiver() throws WxPayException {
     Receiver receiver = new Receiver(WxPayConstants.ReceiverType.PERSONAL_OPENID,
       "oyOUE5ql4TtzrBg5cVOwxq6tbjOs",
       "***",
@@ -92,7 +89,7 @@ public class ProfitSharingServiceImplTest {
   }
 
   @Test
-  public void testProfitsharingQuery() throws WxPayException {
+  public void testProfitSharingQuery() throws WxPayException {
     ProfitSharingQueryRequest request = ProfitSharingQueryRequest
       .newBuilder()
       .outOrderNo("20191023112023031060677")
@@ -104,7 +101,7 @@ public class ProfitSharingServiceImplTest {
   }
 
   @Test
-  public void testProfitsharingReturn() throws WxPayException {
+  public void testProfitSharingReturn() throws WxPayException {
     ProfitSharingReturnRequest request = ProfitSharingReturnRequest
       .newBuilder()
       .outOrderNo("20191023154723316420060")
@@ -118,7 +115,7 @@ public class ProfitSharingServiceImplTest {
   }
 
   @Test
-  public void testProfitsharingReturnQuery() throws WxPayException {
+  public void testProfitSharingReturnQuery() throws WxPayException {
     ProfitSharingReturnQueryRequest request = ProfitSharingReturnQueryRequest
       .newBuilder()
       .outOrderNo("20191023154723316420060")
@@ -126,6 +123,5 @@ public class ProfitSharingServiceImplTest {
       .build();
     this.logger.info(this.payService.getProfitSharingService().profitSharingReturnQuery(request).toString());
   }
-
 
 }

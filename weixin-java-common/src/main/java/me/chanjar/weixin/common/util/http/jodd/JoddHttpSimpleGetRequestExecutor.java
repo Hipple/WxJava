@@ -6,7 +6,6 @@ import jodd.http.HttpResponse;
 import jodd.http.ProxyInfo;
 import jodd.util.StringPool;
 import me.chanjar.weixin.common.WxType;
-import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.http.RequestHttp;
 import me.chanjar.weixin.common.util.http.SimpleGetRequestExecutor;
@@ -41,13 +40,7 @@ public class JoddHttpSimpleGetRequestExecutor extends SimpleGetRequestExecutor<H
     HttpResponse response = request.send();
     response.charset(StringPool.UTF_8);
 
-    String responseContent = response.bodyText();
-
-    WxError error = WxError.fromJson(responseContent, wxType);
-    if (error.getErrorCode() != 0) {
-      throw new WxErrorException(error);
-    }
-    return responseContent;
+    return handleResponse(wxType, response.bodyText());
   }
 
 }

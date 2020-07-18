@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.w3c.dom.Document;
 
 /**
  * @author Wang GuangXin 2019/10/23 14:41
@@ -71,4 +72,19 @@ public class ProfitSharingReturnResult extends BaseWxPayResult {
    */
   @XStreamAlias("finish_time")
   private String finishTime;
+
+  @Override
+  protected void loadXml(Document d) {
+    orderId = readXmlString(d, "order_id");
+    outOrderNo = readXmlString(d, "out_order_no");
+    outReturnNo = readXmlString(d, "out_return_no");
+    returnNo = readXmlString(d, "return_no");
+    returnAccountType = readXmlString(d, "return_account_type");
+    returnAccount = readXmlString(d, "return_account");
+    returnAmount = readXmlInteger(d, "return_amount");
+    description = readXmlString(d, "description");
+    result = readXmlString(d, "result");
+    failReason = readXmlString(d, "fail_reason");
+    finishTime = readXmlString(d, "finish_time");
+  }
 }

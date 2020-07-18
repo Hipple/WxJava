@@ -62,8 +62,8 @@ public interface WxMpApiUrl {
      */
     DEVICE_TRANSMSG(API_DEFAULT_HOST_URL, "/device/transmsg");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -131,8 +131,8 @@ public interface WxMpApiUrl {
      */
     CLEAR_QUOTA_URL(API_DEFAULT_HOST_URL, "/cgi-bin/clear_quota");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -159,8 +159,8 @@ public interface WxMpApiUrl {
      */
     WECHAT_AD_LEADS_GET(API_DEFAULT_HOST_URL, "/marketing/wechat_ad_leads/get");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -199,8 +199,8 @@ public interface WxMpApiUrl {
      */
     MENU_ADDCONDITIONAL(API_DEFAULT_HOST_URL, "/cgi-bin/menu/addconditional");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -224,8 +224,8 @@ public interface WxMpApiUrl {
      */
     SHOW_QRCODE_WITH_TICKET(MP_DEFAULT_HOST_URL, "/cgi-bin/showqrcode?ticket=%s");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -252,8 +252,8 @@ public interface WxMpApiUrl {
      */
     SHAKEAROUND_RELATION_SEARCH(API_DEFAULT_HOST_URL, "/shakearound/relation/search");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -272,8 +272,8 @@ public interface WxMpApiUrl {
      */
     SEND_MESSAGE_URL(API_DEFAULT_HOST_URL, "/cgi-bin/message/template/subscribe");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -308,8 +308,8 @@ public interface WxMpApiUrl {
      */
     TEMPLATE_DEL_PRIVATE_TEMPLATE(API_DEFAULT_HOST_URL, "/cgi-bin/template/del_private_template");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -332,8 +332,8 @@ public interface WxMpApiUrl {
      */
     BATCHUNBLACKLIST(API_DEFAULT_HOST_URL, "/cgi-bin/tags/members/batchunblacklist");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -376,8 +376,8 @@ public interface WxMpApiUrl {
      */
     TAGS_GETIDLIST(API_DEFAULT_HOST_URL, "/cgi-bin/tags/getidlist");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -402,8 +402,8 @@ public interface WxMpApiUrl {
      */
     BIZWIFI_SHOP_UPDATE(API_DEFAULT_HOST_URL, "/bizwifi/shop/update");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -426,8 +426,8 @@ public interface WxMpApiUrl {
      */
     VOICE_QUERY_RESULT_URL(API_DEFAULT_HOST_URL, "/cgi-bin/media/voice/queryrecoresultfortext");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -493,8 +493,8 @@ public interface WxMpApiUrl {
      */
     FILE_COMM(API_DEFAULT_HOST_URL, "/cv/ocr/comm");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -596,10 +596,15 @@ public interface WxMpApiUrl {
      * 设置自助核销接口
      */
     CARD_SELF_CONSUME_CELL_SET(API_DEFAULT_HOST_URL, "/card/selfconsumecell/set"),
+
+    /**
+     * 获取用户已领取卡券接口
+     */
+    CARD_USER_CARD_LIST(API_DEFAULT_HOST_URL, "/card/user/getcardlist"),
     ;
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -678,8 +683,8 @@ public interface WxMpApiUrl {
      */
     GET_INTERFACE_SUMMARY_HOUR(API_DEFAULT_HOST_URL, "/datacube/getinterfacesummaryhour");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -750,8 +755,8 @@ public interface WxMpApiUrl {
      */
     CUSTOM_TYPING(API_DEFAULT_HOST_URL, "/cgi-bin/message/custom/typing");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -804,8 +809,8 @@ public interface WxMpApiUrl {
      */
     MESSAGE_MASS_GET_URL(API_DEFAULT_HOST_URL, "/cgi-bin/message/mass/get");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -860,8 +865,8 @@ public interface WxMpApiUrl {
      */
     MATERIAL_BATCHGET_URL(API_DEFAULT_HOST_URL, "/cgi-bin/material/batchget_material");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -905,8 +910,8 @@ public interface WxMpApiUrl {
      */
     MEMBER_CARD_ACTIVATE_TEMP_INFO(API_DEFAULT_HOST_URL, "/card/membercard/activatetempinfo/get");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -941,8 +946,8 @@ public interface WxMpApiUrl {
      */
     POI_ADD_URL(API_DEFAULT_HOST_URL, "/cgi-bin/poi/addpoi");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -973,8 +978,8 @@ public interface WxMpApiUrl {
      */
     USER_CHANGE_OPENID_URL(API_DEFAULT_HOST_URL, "/cgi-bin/changeopenid");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -997,10 +1002,35 @@ public interface WxMpApiUrl {
     /**
      * 查看指定文章的评论数据.
      */
-    LIST(API_DEFAULT_HOST_URL, "/cgi-bin/comment/list");
+    LIST(API_DEFAULT_HOST_URL, "/cgi-bin/comment/list"),
 
-    private String prefix;
-    private String path;
+    /**
+     * 将评论标记精选.
+     */
+    MARK_ELECT(API_DEFAULT_HOST_URL, "/cgi-bin/comment/markelect"),
+
+    /**
+     * 将评论取消精选.
+     */
+    UNMARK_ELECT(API_DEFAULT_HOST_URL, "/cgi-bin/comment/unmarkelect"),
+
+    /**
+     * 删除评论.
+     */
+    DELETE(API_DEFAULT_HOST_URL, "/cgi-bin/comment/delete"),
+
+    /**
+     * 回复评论.
+     */
+    REPLY_ADD(API_DEFAULT_HOST_URL, "/cgi-bin/comment/reply/add"),
+
+    /**
+     * 删除回复.
+     */
+    REPLY_DELETE(API_DEFAULT_HOST_URL, "/cgi-bin/comment/reply/delete");
+
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -1040,8 +1070,8 @@ public interface WxMpApiUrl {
      */
     FILE_AI_CROP(API_DEFAULT_HOST_URL, "/cv/img/aicrop?ratios=%s");
 
-    private String prefix;
-    private String path;
+    private final String prefix;
+    private final String path;
 
     @Override
     public String getUrl(WxMpConfigStorage config) {
@@ -1052,4 +1082,78 @@ public interface WxMpApiUrl {
     }
   }
 
+  @AllArgsConstructor
+  enum Invoice implements WxMpApiUrl {
+
+    /**
+     * 获取用户开票授权地址
+     */
+    GET_AUTH_URL(API_DEFAULT_HOST_URL, "/card/invoice/getauthurl"),
+
+    /**
+     * 获取用户开票授权信息
+     */
+    GET_AUTH_DATA(API_DEFAULT_HOST_URL, "/card/invoice/getauthdata"),
+
+    /**
+     * 拒绝为用户开票
+     */
+    REJECT_INSERT(API_DEFAULT_HOST_URL, "/card/invoice/rejectinsert"),
+
+    /**
+     * 开票
+     */
+    MAKE_OUT_INVOICE(API_DEFAULT_HOST_URL, "/card/invoice/makeoutinvoice"),
+
+    /**
+     * 发票冲红
+     */
+    CLEAR_OUT_INVOICE(API_DEFAULT_HOST_URL, "/card/invoice/clearoutinvoice"),
+
+    /**
+     * 查询发票信息
+     */
+    QUERY_INVOICE_INFO(API_DEFAULT_HOST_URL, "/card/invoice/queryinvoceinfo"),
+
+    /**
+     * 设置商户信息联系
+     */
+    SET_CONTACT_SET_BIZ_ATTR(API_DEFAULT_HOST_URL, "/card/invoice/setbizattr?action=set_contact"),
+
+    /**
+     * 获取商户联系信息
+     */
+    GET_CONTACT_SET_BIZ_ATTR(API_DEFAULT_HOST_URL, "/card/invoice/setbizattr?action=get_contact"),
+
+    /**
+     * 设置授权页面字段
+     */
+    SET_AUTH_FIELD_SET_BIZ_ATTR(API_DEFAULT_HOST_URL, "/card/invoice/setbizattr?action=set_auth_field"),
+
+    /**
+     * 获取授权页面字段
+     */
+    GET_AUTH_FIELD_SET_BIZ_ATTR(API_DEFAULT_HOST_URL, "/card/invoice/setbizattr?action=get_auth_field"),
+
+    /**
+     * 设置关联商户
+     */
+    SET_PAY_MCH_SET_BIZ_ATTR(API_DEFAULT_HOST_URL, "/card/invoice/setbizattr?action=set_pay_mch"),
+
+    /**
+     * 获取关联商户
+     */
+    GET_PAY_MCH_SET_BIZ_ATTR(API_DEFAULT_HOST_URL, "/card/invoice/setbizattr?action=get_pay_mch"),
+    ;
+    private final String prefix;
+    private final String path;
+
+    @Override
+    public String getUrl(WxMpConfigStorage config) {
+      if (null == config) {
+        return buildUrl(null, prefix, path);
+      }
+      return buildUrl(config.getHostConfig(), prefix, path);
+    }
+  }
 }

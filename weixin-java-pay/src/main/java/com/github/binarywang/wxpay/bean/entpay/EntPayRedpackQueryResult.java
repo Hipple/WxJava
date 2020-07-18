@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.w3c.dom.Document;
 
 /**
  * 红包发送记录查询返回
@@ -130,4 +131,24 @@ public class EntPayRedpackQueryResult extends BaseWxPayResult {
   @XStreamAlias("sender_header_media_id")
   private Integer senderHeaderMediaId;
 
+  @Override
+  protected void loadXml(Document d) {
+    mchBillNo = readXmlString(d, "mch_billno");
+    detailId = readXmlString(d, "detailId");
+    status = readXmlString(d, "status");
+    sendType = readXmlString(d, "send_type");
+    totalAmount = readXmlInteger(d, "total_amount");
+    reason = readXmlInteger(d, "reason");
+    sendTime = readXmlString(d, "send_time");
+    refundTime = readXmlString(d, "refund_time");
+    refundAmount = readXmlInteger(d, "refund_amount");
+    wishing = readXmlString(d, "wishing");
+    remark = readXmlString(d, "remark");
+    actName = readXmlString(d, "act_name");
+    openid = readXmlString(d, "openid");
+    amount = readXmlInteger(d, "amount");
+    rcvTime = readXmlInteger(d, "rcv_time");
+    senderName = readXmlInteger(d, "sender_name");
+    senderHeaderMediaId = readXmlInteger(d, "sender_header_media_id");
+  }
 }

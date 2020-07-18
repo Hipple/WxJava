@@ -4,6 +4,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.util.Map;
+
 /**
  * 发送小程序红包请求参数对象.
  *
@@ -105,8 +107,43 @@ public class WxPaySendMiniProgramRedpackRequest extends BaseWxPayRequest {
   @XStreamAlias("scene_id")
   private String sceneId;
 
+  /**
+   * wxappid.
+   * 微信分配的公众账号ID（企业号corpid即为此appId）。
+   * 接口传入的所有appid应该为公众号的appid（在mp.weixin.qq.com申请的），
+   * 不能为APP的appid（在open.weixin.qq.com申请的）
+   */
+  @XStreamAlias("wxappid")
+  private String wxAppid;
+
   @Override
   protected void checkConstraints() {
 
   }
+
+  @Override
+  protected void storeMap(Map<String, String> map) {
+    map.put("mch_billno", mchBillNo);
+    map.put("send_name", sendName);
+    map.put("re_openid", reOpenid);
+    map.put("total_amount", totalAmount.toString());
+    map.put("total_num", totalNum.toString());
+    map.put("wishing", wishing);
+    map.put("act_name", actName);
+    map.put("remark", remark);
+    map.put("notify_way", notifyWay);
+    map.put("scene_id", sceneId);
+    map.put("wxappid", wxAppid);
+  }
+
+  @Override
+  public String getAppid() {
+    return this.wxAppid;
+  }
+
+  @Override
+  public void setAppid(String appid) {
+    this.wxAppid = appid;
+  }
+
 }

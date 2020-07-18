@@ -4,6 +4,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.w3c.dom.Document;
 
 import java.io.Serializable;
 
@@ -17,6 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @XStreamAlias("xml")
 public class WxPaySendMiniProgramRedpackResult extends BaseWxPayResult implements Serializable {
+  private static final long serialVersionUID = 5847928569755121611L;
   /**
    * 商户订单号.
    */
@@ -53,4 +55,13 @@ public class WxPaySendMiniProgramRedpackResult extends BaseWxPayResult implement
   @XStreamAlias("send_listid")
   private String sendListId;
 
+  @Override
+  protected void loadXml(Document d) {
+    mchBillNo = readXmlString(d, "mch_billno");
+    wxAppid = readXmlString(d, "wxappid");
+    reOpenid = readXmlString(d, "re_openid");
+    totalAmount = readXmlInteger(d, "total_amount");
+    packageName = readXmlString(d, "package");
+    sendListId = readXmlString(d, "send_listid");
+  }
 }

@@ -25,11 +25,10 @@ import java.util.*;
  */
 @Slf4j
 public class SignUtils {
-
   /**
    * 签名的时候不携带的参数
    */
-  private static List<String> NO_SIGN_PARAMS = Lists.newArrayList("sign", "key", "xmlString", "xmlDoc", "couponList");
+  private static final List<String> NO_SIGN_PARAMS = Lists.newArrayList("sign", "key", "xmlString", "xmlDoc", "couponList");
 
   /**
    * 请参考并使用 {@link #createSign(Object, String, String, String[])}.
@@ -65,7 +64,18 @@ public class SignUtils {
    * @return 签名字符串 string
    */
   public static String createSign(Object xmlBean, String signType, String signKey, String[] ignoredParams) {
-    return createSign(xmlBean2Map(xmlBean), signType, signKey, ignoredParams);
+    Map<String, String> map = null;
+
+    if (XmlConfig.fastMode) {
+      if (xmlBean instanceof BaseWxPayRequest) {
+        map = ((BaseWxPayRequest) xmlBean).getSignParams();
+      }
+    }
+    if (map == null) {
+      map = xmlBean2Map(xmlBean);
+    }
+
+    return createSign(map, signType, signKey, ignoredParams);
   }
 
   /**
@@ -78,10 +88,8 @@ public class SignUtils {
    * @return 签名字符串 string
    */
   public static String createSign(Map<String, String> params, String signType, String signKey, String[] ignoredParams) {
-    SortedMap<String, String> sortedMap = new TreeMap<>(params);
-
     StringBuilder toSign = new StringBuilder();
-    for (String key : sortedMap.keySet()) {
+    for (String key : new TreeMap<>(params).keySet()) {
       String value = params.get(key);
       boolean shouldSign = false;
       if (StringUtils.isNotEmpty(value) && !ArrayUtils.contains(ignoredParams, key)
@@ -91,7 +99,7 @@ public class SignUtils {
 
       if (shouldSign) {
         toSign.append(key).append("=").append(value).append("&");
-    }
+      }
     }
 
     toSign.append("key=").append(signKey);
@@ -104,35 +112,33 @@ public class SignUtils {
 
   /**
    * 企业微信签名
+   *
    * @param signType md5 目前接口要求使用的加密类型
    */
-  public static String createEntSign(String actName,String mchBillNo,String mchId,String nonceStr,
-                                     String reOpenid,Integer totalAmount,String wxAppId,String signKey,
-                                     String signType){
-    Map<String, String> sortedMap = new HashMap<>();
-    sortedMap.put("act_name",actName);
-    sortedMap.put("mch_billno",mchBillNo);
-    sortedMap.put("mch_id",mchId);
-    sortedMap.put("nonce_str",nonceStr);
-    sortedMap.put("re_openid",reOpenid);
+  public static String createEntSign(String actName, String mchBillNo, String mchId, String nonceStr,
+                                     String reOpenid, Integer totalAmount, String wxAppId, String signKey,
+                                     String signType) {
+    Map<String, String> sortedMap = new HashMap<>(8);
+    sortedMap.put("act_name", actName);
+    sortedMap.put("mch_billno", mchBillNo);
+    sortedMap.put("mch_id", mchId);
+    sortedMap.put("nonce_str", nonceStr);
+    sortedMap.put("re_openid", reOpenid);
     sortedMap.put("total_amount", totalAmount + "");
-    sortedMap.put("wxappid",wxAppId);
+    sortedMap.put("wxappid", wxAppId);
 
-    Map<String, String> sortParams = new TreeMap<>(sortedMap);
-    Set<Map.Entry<String, String>> entries = sortParams.entrySet();
-    Iterator<Map.Entry<String, String>> iterator = entries.iterator();
+    Iterator<Map.Entry<String, String>> iterator = new TreeMap<>(sortedMap).entrySet().iterator();
     StringBuilder toSign = new StringBuilder();
-    while(iterator.hasNext()){
-      Map.Entry entry = iterator.next();
-      String key = String.valueOf(entry.getKey());
-      String value = String.valueOf(entry.getValue());
+    while (iterator.hasNext()) {
+      Map.Entry<String, String> entry = iterator.next();
+      String value = entry.getValue();
       boolean shouldSign = false;
       if (StringUtils.isNotEmpty(value)) {
         shouldSign = true;
       }
 
       if (shouldSign) {
-        toSign.append(key).append("=").append(value).append("&");
+        toSign.append(entry.getKey()).append("=").append(value).append("&");
       }
     }
     //企业微信这里字段名不一样
