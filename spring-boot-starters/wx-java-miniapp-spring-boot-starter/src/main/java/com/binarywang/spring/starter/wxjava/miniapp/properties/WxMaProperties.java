@@ -4,6 +4,7 @@ import com.binarywang.spring.starter.wxjava.miniapp.enums.HttpClientType;
 import com.binarywang.spring.starter.wxjava.miniapp.enums.StorageType;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * 属性配置类.
@@ -60,6 +61,7 @@ public class WxMaProperties {
     /**
      * redis连接配置.
      */
+    @NestedConfigurationProperty
     private final RedisProperties redis = new RedisProperties();
 
     /**
@@ -88,37 +90,4 @@ public class WxMaProperties {
     private String httpProxyPassword;
   }
 
-  @Data
-  public static class RedisProperties {
-
-    /**
-     * 主机地址.不填则从spring容器内获取JedisPool
-     */
-    private String host;
-
-    /**
-     * 端口号.
-     */
-    private int port = 6379;
-
-    /**
-     * 密码.
-     */
-    private String password;
-
-    /**
-     * 超时.
-     */
-    private int timeout = 2000;
-
-    /**
-     * 数据库.
-     */
-    private int database = 0;
-
-    private Integer maxActive;
-    private Integer maxIdle;
-    private Integer maxWaitMillis;
-    private Integer minIdle;
-  }
 }

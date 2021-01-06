@@ -4,10 +4,10 @@ import cn.binarywang.wx.miniapp.api.WxMaMsgService;
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.*;
 import cn.binarywang.wx.miniapp.constant.WxMaConstants;
-import cn.binarywang.wx.miniapp.util.json.WxMaGsonBuilder;
+import cn.binarywang.wx.miniapp.json.WxMaGsonBuilder;
 import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
-import me.chanjar.weixin.common.WxType;
+import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.json.GsonParser;
@@ -17,22 +17,12 @@ import me.chanjar.weixin.common.util.json.GsonParser;
  */
 @AllArgsConstructor
 public class WxMaMsgServiceImpl implements WxMaMsgService {
-
-  private WxMaService wxMaService;
+  private final WxMaService wxMaService;
 
   @Override
   public boolean sendKefuMsg(WxMaKefuMessage message) throws WxErrorException {
     String responseContent = this.wxMaService.post(KEFU_MESSAGE_SEND_URL, message.toJson());
     return responseContent != null;
-  }
-
-  @Override
-  public void sendTemplateMsg(WxMaTemplateMessage templateMessage) throws WxErrorException {
-    String responseContent = this.wxMaService.post(TEMPLATE_MSG_SEND_URL, templateMessage.toJson());
-    JsonObject jsonObject = GsonParser.parse(responseContent);
-    if (jsonObject.get(WxMaConstants.ERRCODE).getAsInt() != 0) {
-      throw new WxErrorException(WxError.fromJson(responseContent, WxType.MiniApp));
-    }
   }
 
   @Override
